@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<error-handler name="global_errorhandler" doc:id="b760ff34-bb03-4cd8-a5d4-ea80d7d43ce8" >
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="296836fa-f229-44d9-9a50-e974f8c11921" type="APP:INVALID_DESTINATION" >
+			<ee:transform doc:name="Copy_of_error.description" doc:id="be30a569-36ec-4e0a-be27-4859dab97839" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": error.description
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+			<set-variable value="400" doc:name="Copy_of_httpStatus" doc:id="370fe00f-6cb8-44bc-bb81-f240f0120581" variableName="httpStatus" />
+		</on-error-continue>
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="16e6965f-2040-47aa-8289-e8a58479e99c" type="WSC:CONNECTIVITY,WSC:INVALID_WSDL" >
+			<ee:transform doc:name="Copy_of_Data Unavailable" doc:id="7f581a73-aad3-4ddb-95c1-4737c37a5eb4" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": "Data unavailable, please try again later. "  ++ (error.description default ' ')
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+			<set-variable value="500" doc:name="Copy_of_httpStatus" doc:id="c3320b39-3cb1-41c1-9f8c-7003d2aac20b" variableName="httpStatus" />
+		</on-error-continue>
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="8f91bec4-23d0-4327-b834-87f6c138a080" type="ANY" >
+			<ee:transform doc:name="Copy_of_error description" doc:id="b89460b3-1473-4ccc-8746-283a64567aff" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message": error.description
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+			<set-variable value="500" doc:name="Copy_of_httpStatus" doc:id="15ecafc0-bb96-4528-b67c-67a35b258e43" variableName="httpStatus" />
+		</on-error-continue>
+	</error-handler>
+</mule>
