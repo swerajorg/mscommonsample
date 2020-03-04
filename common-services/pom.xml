@@ -25,7 +25,10 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
-            </plugin>
+    			<configuration>
+       				 <classifier>mule-plugin</classifier>
+    			</configuration>
+    		</plugin>
 		</plugins>
 	</build>
 
