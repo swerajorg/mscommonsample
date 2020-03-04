@@ -25,4 +25,5 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		</wsc:connection>
 	</wsc:config>
 	<import doc:name="Import" doc:id="ca963e47-fd84-4a41-abbd-a62c07df2330" file="common-errorhandler.xml" />
+	<configuration doc:name="Configuration" doc:id="c8eb139c-4d42-4fb6-bf24-162159802759" defaultErrorHandler-ref="global_errorhandler" />
 </mule>

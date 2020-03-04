@@ -90,6 +90,12 @@
             <version>1.0.2</version>
             <classifier>mule-plugin</classifier>
         </dependency>
+		<dependency>
+    		<groupId>0d14840c-066c-477f-b1ce-98adf40ef132</groupId>
+    		<artifactId>common-services</artifactId>
+    		<version>1.0.0</version>
+    		<classifier>mule-plugin</classifier>
+		</dependency>     
     </dependencies>
 
 	<repositories>
