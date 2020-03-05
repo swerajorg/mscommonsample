@@ -38,6 +38,7 @@ payload]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 		<logger level="INFO" doc:name="Logger" doc:id="ed5c3818-454a-45cb-8784-7cfe9288e01e" />
+		<flow-ref doc:name="CommonLogger" doc:id="bd82e1f5-669b-4088-98c8-ad0977cd81ab" name="common-loggerFlow"/>
 		
 	</flow>
 	<flow name="getAmericanFlights" doc:id="12f2c4c4-bc1a-4fd9-8a3e-8b589cec79d2" >
