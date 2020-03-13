@@ -34,11 +34,12 @@ http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mu
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
-payload]]></ee:set-payload>
+{
+	airlines: payload	
+}]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="Logger" doc:id="ed5c3818-454a-45cb-8784-7cfe9288e01e" />
-		<flow-ref doc:name="CommonLogger" doc:id="bd82e1f5-669b-4088-98c8-ad0977cd81ab" name="common-loggerFlow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="ed5c3818-454a-45cb-8784-7cfe9288e01e" message="#[payload]"/>
 		
 	</flow>
 	<flow name="getAmericanFlights" doc:id="12f2c4c4-bc1a-4fd9-8a3e-8b589cec79d2" >
@@ -62,7 +63,7 @@ payload map ( payload01, indexOfPayload01 ) -> {
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="Logger" doc:id="9cd08e21-94fc-4fbc-9610-be353a56d9b2" />
+		<logger level="INFO" doc:name="Logger" doc:id="9cd08e21-94fc-4fbc-9610-be353a56d9b2"/>
 		<error-handler >
 			<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="a67788d5-85aa-4234-9893-6496ef449d09" type="AMERICAN-FLIGHTS-API:BAD_REQUEST">
 				<ee:transform doc:name="Transform Message" doc:id="26334a8f-ae6d-4c8f-9196-53021c7ad19c">
@@ -141,7 +142,7 @@ output application/java
 flatten(payload..payload)]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="Logger" doc:id="a8ff3337-9e18-4b7e-8df1-00cd5e440426" />
+		<logger level="INFO" doc:name="Logger" doc:id="a8ff3337-9e18-4b7e-8df1-00cd5e440426"/>
 	</flow>
 	<flow name="getUnitedFlights" doc:id="fd99c93f-6b84-4624-9677-36b871aacc33" >
 		<http:request method="GET" doc:name="Get Flights" doc:id="ac3b90c0-4de4-421b-8403-57153ae20046" config-ref="HTTP_Request_configuration" path="/united/flights/{dest}">
@@ -170,7 +171,7 @@ payload.flights map (flights01, indexOfFlights01 ) -> {
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="Logger" doc:id="db352f43-47a5-476a-88bf-810ad9da5299" />
+		<logger level="INFO" doc:name="Logger" doc:id="db352f43-47a5-476a-88bf-810ad9da5299"/>
 	</flow>
 	<flow name="getDeltaFlights" doc:id="4b7e7162-d447-4239-a75b-aa61f5dc1c84" >
 		<ee:transform doc:name="pass code" doc:id="44f586b3-22a0-4891-9cc1-593d2e76f627" >
@@ -206,7 +207,7 @@ payload.body.ns0#findFlightResponse.*return map (return, inded01) -> {
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="Logger" doc:id="ceb0d8e8-cd36-4658-9bc9-a8f8198e90bb" />
+		<logger level="INFO" doc:name="Logger" doc:id="ceb0d8e8-cd36-4658-9bc9-a8f8198e90bb"/>
 	</flow>
 	<sub-flow name="setCode" doc:id="4c457fc3-7350-4409-87ef-077b27a0ff28" >
 		<set-variable value="#[message.attributes.queryParams.code]" doc:name="code" doc:id="f92867a1-a4f9-47d9-a3a2-f301a714f510" variableName="code"/>
@@ -274,7 +275,7 @@ flights distinctBy $
 		]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="Logger" doc:id="b9868446-9d96-4ada-9f06-1273c207d58e" />
+		<logger level="INFO" doc:name="Logger" doc:id="b9868446-9d96-4ada-9f06-1273c207d58e"/>
 	</flow>
 	<flow name="getTotalSeats" doc:id="bdb1c796-8ce0-4246-b9e6-796d36c1b2a4" >
 		<ee:transform doc:name="Transform Message" doc:id="e1ceb438-5027-46ae-ad4d-0adf5e5cdb14" >
