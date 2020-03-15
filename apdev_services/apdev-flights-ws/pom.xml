@@ -9,7 +9,7 @@
 
 	<name>apdev-flights-ws</name>
 
-    <description>mua-flights-api</description>
+    <description>mua-flights-api-temp</description>
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
