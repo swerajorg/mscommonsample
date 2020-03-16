@@ -12,7 +12,11 @@ pipeline {
             steps {
                 echo "Starting Create Release Branch..."
                 sh "git checkout -b '${env.BUILD_VERSION}'"
-                sh "mvn -f apdev_services/apdev-flights-ws/pom.xml versions:set -DnewVersion='${env.BUILD_VERSION}'"
+                sh "echo WORKSPACE"
+                dir("${env.WORKSPACE}/apdev_services/apdev-flights-ws"){
+                    sh "pwd"
+                }
+                sh "mvn versions:set -DnewVersion='${env.BUILD_VERSION}'"
                 echo "Create Release Branch: ${currentBuild.currentResult}"
             }
             post {
