@@ -55,7 +55,7 @@ pipeline {
                 script {
                     echo "Starting Push Release Branch..."
                     // Success
-                    sh "git add pom.xml"
+                    sh "git add ."
                     sh 'git commit -m "Committing Branch"'
                     sh "git push --set-upstream origin '${env.BUILD_VERSION}'"
                     echo "Build Successful...branch ${env.BUILD_VERSION} committed"
