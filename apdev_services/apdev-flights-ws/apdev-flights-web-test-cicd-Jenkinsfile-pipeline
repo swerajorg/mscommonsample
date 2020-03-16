@@ -28,7 +28,7 @@ pipeline {
             }
         }
    
-        stage('Build and Test') {
+  /*      stage('Build and Test') {
             steps {
                 echo "Starting Build and Test..."
                 dir("${env.WORKSPACE}/apdev_services/apdev-flights-ws"){
@@ -49,7 +49,7 @@ pipeline {
                 }
             }
         }
-        
+     */   
         stage('Push Release Branch') {
             steps {
                 script {
