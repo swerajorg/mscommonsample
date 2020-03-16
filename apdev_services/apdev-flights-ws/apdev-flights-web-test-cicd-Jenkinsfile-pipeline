@@ -50,7 +50,7 @@ pipeline {
             }
         }
      */   
-        stage('Push Release Branch') {
+    /*    stage('Push Release Branch') {
             steps {
                 script {
                     echo "Starting Push Release Branch..."
@@ -73,7 +73,7 @@ pipeline {
                 }
             }
         }
-        
+      */  
         stage('Deploy Artifact') {
             steps {
                 script {
